@@ -4,10 +4,10 @@ var slug = require('mongoose-slug-generator');
 mongoose.plugin(slug);
 
 var productSchema = new schema({
-    title : {type : String } ,
-    quantity : {type : Number , default:1},
+    title : {type : String ,required:true} ,
+    quantity : {type : Number , default:1,required:true},
     likes : {type : Number , default :0} ,
-    price :{type : Number },
+    price :{type : Number ,required:true},
     commentID :[{type : schema.Types.ObjectId, ref :"Comment"}] ,
     slug: { type: String, slug: "title" },
     image:{type:String}

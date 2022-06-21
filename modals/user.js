@@ -3,10 +3,10 @@ var schema = mongoose.Schema;
 var bcrypt =require('bcrypt')
 
 var userSchema = new schema({
-    name : {type : String},
-    email : {type : String ,unique : true},
+    name : {type : String,required:true},
+    email : {type : String ,unique : true,required:true},
     password :{type : String ,minlength : 5 , required : true} ,
-    city:{type : String },
+    city:{type : String ,default:"India"},
     isAdmin:{type : Boolean},
     isBlocked:{type:Boolean},
 } )
