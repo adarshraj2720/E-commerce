@@ -39,7 +39,6 @@ nav a{
   font-size: 20;
   font-weight: 800;
 }
-
 .user{
   color: brown;
   font-weight: 1000;
@@ -51,7 +50,16 @@ nav a{
   padding: 4px;
   border-radius: 4px;
 }
+figure{
 
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+img{
+  height: 550px;
+}
 
 h2{
   text-align: center;
