@@ -62,7 +62,7 @@ if(password.length < 4){
        return res.redirect('/product/new')
       }  
       if(user.isAdmin === false && user.isBlocked===false) {
-        return res.redirect('/user')
+        return res.redirect('/product')
       }else{
         return res.redirect('/users/login')
       }
