@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../modals/user')
-var Productts = require('../modals/product')
+var Product = require('../modals/product')
 
 var auth = require('../middlewares/auth')
 var path = require('path')
@@ -42,7 +42,7 @@ router.get('/new' ,(req ,res ,next) => {
 
 router.post('/' ,upload.single('image'),(req ,res) => {
   req.body.image = req.file.filename;
-    Productts.create(req.body ,(err ,product) => {
+    Product.create(req.body ,(err ,product) => {
      
       console.log(req.file.filename)
       console.log(err ,product)
@@ -69,7 +69,7 @@ if(isRegister === true){
         }
     })
 }
-Productts.find({},(err,products)=>{
+Product.find({},(err,products)=>{
     console.log(products)
     res.render('product',{products,isAdmin,isRegister});
 })
@@ -86,7 +86,7 @@ router.get('/:id/edit',auth.isAdmin,(req ,res) => {
     var userID = req.session.userID;
     // User.findById(userID ,(err ,user) => {
     //   if(user.isAdmin === true) {
-        Productts.findById(id ,(err ,product) => {
+        Product.findById(id ,(err ,product) => {
           res.render('editproduct' ,{product :product})
         })
     //   }
@@ -96,7 +96,7 @@ router.get('/:id/edit',auth.isAdmin,(req ,res) => {
   
   router.post('/:id/edit' ,(req ,res) => {
     var id = req.params.id;
-    Productts.findByIdAndUpdate(id ,req.body,(err ,updateProduct) => {
+    Product.findByIdAndUpdate(id ,req.body,(err ,updateProduct) => {
       console.log(updateProduct ,"update product")
       res.redirect('/product')
     })
@@ -111,7 +111,7 @@ router.get('/:id/delete',auth.isAdmin,(req,res,next)=>{
     console.log(req.user,"rrrrrrrr");
     // User.findById(userID,(err,user)=>{
     //     if(user.isAdmin===true){
-            Productts.findByIdAndDelete(id,(err,userdelete)=>{
+            Product.findByIdAndDelete(id,(err,userdelete)=>{
                 res.redirect('/product');
             })
 
@@ -126,7 +126,7 @@ router.get('/:id/like',auth.isUser,(req,res,next)=>{
     var id = req.params.id;
     // User.findById(userID,(err,user)=>{
     //     if(user.isAdmin===false){
-            Productts.findByIdAndUpdate(id,{$inc:{likes:1}},(err,like)=>{
+            Product.findByIdAndUpdate(id,{$inc:{likes:1}},(err,like)=>{
                 res.redirect('/product')
             })
     //     }
@@ -139,7 +139,7 @@ router.get('/:id/dislike',auth.isUser,(req,res,next)=>{
     var id = req.params.id;
     // User.findById(userID,(err,user)=>{
     //     if(user.isAdmin===false){
-            Productts.findByIdAndUpdate(id,{$inc:{likes:-1}},(err,like)=>{
+            Product.findByIdAndUpdate(id,{$inc:{likes:-1}},(err,like)=>{
                 res.redirect('/product')
             })
     //     }
