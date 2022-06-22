@@ -60,6 +60,10 @@ figure{
 img{
   height: 550px;
 }
+.product-img{
+  height: 400px;
+  width: 350px;
+}
 
 h2{
   text-align: center;
