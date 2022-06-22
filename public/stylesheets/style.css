@@ -97,6 +97,7 @@ input{
 .product{
   position: relative;
   margin: 0 30px;
+  background-color: red;
 
 }
 
